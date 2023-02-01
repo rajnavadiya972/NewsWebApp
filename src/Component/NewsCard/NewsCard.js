@@ -11,7 +11,6 @@ const NewsCard = ({ article: { description, publishedAt, source, title, url, url
 
     useEffect(() => {
         window.scroll(0, 0);
-
         setElRefs((refs) => Array(20).fill().map((_, j) => refs[j] || createRef()));
     }, []);
 
