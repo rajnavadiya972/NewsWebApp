@@ -8,7 +8,7 @@ const alanKey = '188cde14e1691278095e7d637632cb512e956eca572e1d8b807a3e2338fdd0d
 
 function News() {
     const [activeArticle, setActiveArticle] = useState(0);
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
     const [newsArticle, setNewsArticle] = useState([]);
 
     useEffect(() => {
@@ -16,10 +16,10 @@ function News() {
             key: alanKey,
             onCommand: ({ command, articles,number }) => {
                 if (command === 'newHeadlines') {
-                    setNewsArticle(articles);
+                    setNewsArticle(articles); 
                     setActiveArticle(-1);
-                } else if (command === 'instructions') {
-                    setIsOpen(true);
+                // } else if (command === 'instructions') {
+                //     setIsOpen(true);
                 } else if (command === 'highlight') {
                     setActiveArticle((prevActiveArticle) => prevActiveArticle + 1);
                 } else if (command === 'open') {
@@ -43,7 +43,7 @@ function News() {
     return (
         <div>
             <h1>Alan AI News Application</h1>
-            <NewsCards articles={newsArticle} />
+            <NewsCards articles={newsArticle} activeArticle={activeArticle} />
         </div>
     );
 }
