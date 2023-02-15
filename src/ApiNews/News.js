@@ -41,8 +41,7 @@ function News() {
 
 
     return (
-        <div>
-            <h1>Alan AI News Application</h1>
+        <div className='text-gray-300'>
             <NewsCards articles={newsArticle} activeArticle={activeArticle} />
         </div>
     );

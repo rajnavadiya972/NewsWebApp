@@ -1,11 +1,11 @@
 import React from 'react'
-import { Grid, Grow, Typography } from '@mui/material'
+import { Grid, Grow } from '@mui/material'
 import NewsCard from './../NewsCard/NewsCard'
 
 const infoCards = [
-    { color: '#00838f', title: 'Latest News', text: 'Give me the latest news' },
+    { color: '#3B82F7', title: 'Latest News', text: 'Give me the latest news' },
     { color: '#1565c0', title: 'News by Categories', info: 'Business, Entertainment, General, Health, Science, Sports, Technology', text: 'Give me the latest Technology news' },
-    { color: '#4527a0', title: 'News by Terms', info: 'Bitcoin, PlayStation 5, Smartphones, Donald Trump...', text: 'What\'s up with PlayStation 5' },
+    { color: '#4527a5', title: 'News by Terms', info: 'Bitcoin, PlayStation 5, Smartphones, Donald Trump...', text: 'What\'s up with PlayStation 5' },
     { color: '#283593', title: 'News by Sources', info: 'CNN, Wired, BBC News, Time, IGN, Buzzfeed, ABC News...', text: 'Give me the news from CNN' },
 ];
 
@@ -13,19 +13,19 @@ const NewsCards = ({ articles ,activeArticle}) => {
 
     if (!articles.length) {
         return (
-            <Grow in>
-                <Grid className='w-full px-10' container alignItems={'stretch'} spacing={3}>
+            <div>
+                <div className='w-full px-5 text-gray-300'>
                     {infoCards.map((infoCard) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} className='flex flex-col items-center'>
-                            <div className='flex flex-col justify-between items-center w-full p-5 rounded-xl' style={{ backgroundColor: infoCard.color }}>
-                                <Typography variant="h5" component="h5">{infoCard.title}</Typography>
-                                {infoCard.info ? (<Typography variant="h6" component="h6"><strong>{infoCard.title.split(' ')[2]}</strong>: <br />{infoCard.info}</Typography>) : null}
-                                <Typography variant="h6" component="h6">Try saying: <br /> <i>{infoCard.text}</i></Typography>
+                        <div className='flex flex-row items-center my-3'>
+                            <div className='flex flex-row justify-between items-center w-full p-5 rounded-xl max-md:flex-col' style={{ backgroundColor: infoCard.color }}>
+                                <div className='justify-center items-center m-2'>{infoCard.title}</div>
+                                {infoCard.info ? (<h6 className='m-2'><strong>{infoCard.title.split(' ')[2]}</strong>: <br />{infoCard.info}</h6>) : null}
+                                <h6 className='m-2'>Try saying: <br /> <i>{infoCard.text}</i></h6>
                             </div>
-                        </Grid>
+                        </div> 
                     ))}
-                </Grid>
-            </Grow>
+                </div>
+            </div>
         )
     }
     return (
