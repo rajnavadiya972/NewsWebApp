@@ -2,6 +2,7 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 import { useState, useEffect } from 'react'
 import NewsCards from './../Component/NewsCards/NewsCards'
 import wordsToNumbers from 'words-to-numbers';
+import Navbar from '../Component/User/Navbar';
 
 const alanKey = '188cde14e1691278095e7d637632cb512e956eca572e1d8b807a3e2338fdd0dc/stage';
 
@@ -41,9 +42,12 @@ function News() {
 
 
     return (
-        <div>
-            <h1>Alan AI News Application</h1>
+        <div className='text-gray-300 flex'>
+            <Navbar />
+            <div className='mx-auto'>
+            <h1 className='text-blue-700 flex justify-center font-bold text-xl mt-2'>World News</h1>
             <NewsCards articles={newsArticle} activeArticle={activeArticle} />
+            </div>
         </div>
     );
 }
