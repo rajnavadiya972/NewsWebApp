@@ -6,6 +6,7 @@ import {
     ImFilesEmpty,
     ImSpinner3,
 } from "react-icons/im";
+import Navbar from "../User/Navbar";
 // import { uploadImage } from "../api/post";
 // import { useNotification } from "../context/NotificationProvider";
 // import MarkdownHint from "./MarkdownHint";
@@ -142,10 +143,11 @@ export default function PostNews({
 
     return (
         <>
+        <Navbar />
             <form className="p-2 flex justify-center">
                 <div className="w-9/12 h-screen space-y-3  flex  flex-col">
                     <div className="flex items-center justify-between max-md:flex-col">
-                        <h1 className="text-xl font-semibold text-white max-md:m-2">
+                        <h1 className="text-xl font-semibold text-blue-700 max-md:m-2">
                             Create News
                         </h1>
                         <div className="flex items-center space-x-5 ">
@@ -187,7 +189,7 @@ export default function PostNews({
 
                     {/* Title input */}
                     <div>
-                        <label className="text-gray-500" htmlFor="tags">
+                        <label className="text-white" htmlFor="tags">
                             News Title
                         </label>
                         <input
@@ -203,7 +205,7 @@ export default function PostNews({
 
                     {/* Post Content */}
                     <div>
-                        <label className="text-gray-500" htmlFor="tags">
+                        <label className="text-white" htmlFor="tags">
                             Description
                         </label>
                         <textarea
@@ -219,7 +221,7 @@ export default function PostNews({
 
                     {/* Tags input */}
                     <div>
-                        <label className="text-gray-500" htmlFor="tags">
+                        <label className="text-white" htmlFor="tags">
                             Category
                         </label>
                         <input

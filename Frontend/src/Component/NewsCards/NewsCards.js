@@ -13,7 +13,7 @@ const NewsCards = ({ articles ,activeArticle}) => {
 
     if (!articles.length) {
         return (
-            <div>
+            <div className='mx-auto'>
                 <div className='w-full px-5 text-gray-300'>
                     {infoCards.map((infoCard) => (
                         <div className='flex flex-row items-center my-3'>
