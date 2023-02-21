@@ -64,18 +64,18 @@ const SignUp = () => {
         // e.preventDefault()
 
         console.log("Hello");
-        const res = await axios.post('/createUser', {
+        const res = await axios.post('/createMediaReporter', {
             ...values
         });
         // console.log(res.data);
         if (res.data.success === false) {
             updateError(res.data.message, setError)
-            toast.error(error);
+            toast.error(res.data.message);
             return;
         }
-        toast.success("Register User successful")
+        toast.success("Register MediaReporter successful")
         await sleep(1500)
-        navigate("/UserLogin");
+        navigate("/MediaReporterLogin");
         FormikActions.resetForm();
         FormikActions.setSubmitting(false);
     }
@@ -114,7 +114,7 @@ const SignUp = () => {
     // }
 
     const activebtn = 'flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-white rounded-md md:mt-0 md:w-auto md:mx-2 text-blue-400 focus:outline-none'
-    const deactivebtn = '  hover:bg-blue-400 flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-md md:w-auto md:mx-2 focus:outline-none'
+    const deactivebtn = 'max-md:mt-4 hover:bg-blue-400 flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-md md:w-auto md:mx-2 focus:outline-none'
     //  var bsFillPersonFill=<BsFillPersonFill size={20}/>
     return (
         <div>
@@ -136,7 +136,7 @@ const SignUp = () => {
                                             <div className="mt-3 md:flex md:items-center md:-mx-2">
                                                 <NavLink to='/UserSignUp' >
 
-                                                <button class={deactivebtn}>
+                                                <button class={activebtn}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                                     </svg>
@@ -148,7 +148,7 @@ const SignUp = () => {
                                                 </NavLink>
 
                                                 <NavLink to='/MediaReporterSignUp'>
-                                                <button class={activebtn}>
+                                                <button class={deactivebtn}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                     </svg>
@@ -271,7 +271,7 @@ const SignUp = () => {
                                                 </>
                                             }}
                                         </Formik>
-                                        <p class="mt-6 text-sm text-center text-white">Already have an account? <a href="/UserLogin" class="text-blue-500 focus:outline-none focus:underline hover:underline">Login here</a>... </p>
+                                        <p class="mt-6 text-sm text-center text-white">Already have an account? <a href="/MediaReporterLogin" class="text-blue-500 focus:outline-none focus:underline hover:underline">Login here</a>... </p>
                                     </div>
                                 </div>
                             </div>

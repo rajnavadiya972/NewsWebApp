@@ -5,7 +5,9 @@ import SignUp from './Component/User/SignUp';
 
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import PostNews from './Component/MediaReporter/PostNews';
-import Navbar from './Component/User/Navbar';
+import MediaReporterLogin from './Component/MediaReporter/MediaReposterLogin';
+import MediaReporterSignUp from './Component/MediaReporter/MediaReporterSignUp';
+import Terms from './Component/CommonComponent/Terms';
 
 
 
@@ -18,6 +20,9 @@ function App() {
         <Route path='/UserSignUp' element={<SignUp />} />
         <Route path='/ApiNews' element={<ApiNews />} />
         <Route path='/PostNews' element={<PostNews />} />
+        <Route path='/MediaReporterLogin' element={<MediaReporterLogin />} />
+        <Route path='/MediaReporterSignUp' element={<MediaReporterSignUp />} />
+        <Route path='/TermsAndCondition' element={<Terms />} />
       </Routes>
     </BrowserRouter>
   );
