@@ -67,7 +67,7 @@ const Login = () => {
         // console.log(res.data.token);
         toast.success("MediaReporter Login successful")
         await sleep(1500)
-        navigate("/ApiNews");
+        navigate("/ApiNewsMedia");
         FormikActions.resetForm();
         FormikActions.setSubmitting(false);
     }

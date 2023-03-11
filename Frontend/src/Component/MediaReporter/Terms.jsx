@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../User/Navbar";
+import Navbar from "./Navbar";
 function Terms() {
     return (
         <div>

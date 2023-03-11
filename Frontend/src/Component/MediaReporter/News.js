@@ -1,9 +1,8 @@
 import alanBtn from '@alan-ai/alan-sdk-web';
 import { useState, useEffect } from 'react'
-import NewsCards from './../Component/NewsCards/NewsCards'
+import NewsCards from './../../Component/NewsCards/NewsCards'
 import wordsToNumbers from 'words-to-numbers';
-import Navbar from '../Component/User/Navbar';
-import NavbarM from '../Component/MediaReporter/Navbar';
+import Navbar from './Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 

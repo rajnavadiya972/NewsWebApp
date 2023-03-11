@@ -3,17 +3,18 @@ const mediaReporter = require("../models/mediaReporter");
 
 exports.isAuth = async (req, res, next) => {
     try {
-        console.log("hello");
-        console.log(req.cookies);
+        // console.log("hello");
+        // console.log(req.cookies);
         const token = req.cookies.jwtoken;
         const verifytoken = jwt.verify(token, process.env.JWT_SECRET);
 
         const rootMediaReporte = await mediaReporter.findOne({ _id: verifytoken._id, token: token });
-        console.log(rootMediaReporte);
+        // console.log(rootMediaReporte);
 
         if (!rootMediaReporte) { throw new Error("Unauthorized"); }
 
         else {
+            // console.log(req);
             req.token = token;
             req.rootMediaReporte = rootMediaReporte;
             req.mediaReporterId = rootMediaReporte._id;

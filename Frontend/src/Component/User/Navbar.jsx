@@ -17,14 +17,14 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const menus = [{ name: "Profile", link: "/", icon: FaUserCircle },
-    { name: "World News", link: "/ApiNews", icon: GiWorld },
-    { name: "Latest News", link: "/", icon: RiArticleLine },
-    { name: "My Post", link: "/", icon: BsFilePost },
-    { name: "Boost Your Post", link: "/PostNews", icon: IoIosRocket },
-    { name: "Bookmark", link: "/PostNews", icon: FaBookmark },
-    { name: "Subscription", link: "/", icon: GiWallet },
-    { name: "Terms & Conditions", link: "/TermsAndCondition", icon: BsQuestionCircleFill },
-    { name: "About", link: "/", icon: BsInfoCircle },
+    { name: "World News", link: "/ApiNewsUser", icon: GiWorld },
+    { name: "Latest News", link: "/LocalNewsUser", icon: RiArticleLine },
+    // { name: "My Post", link: "/MyPost", icon: BsFilePost },
+    // { name: "Boost Your Post", link: "/PostNews", icon: IoIosRocket },
+    { name: "Bookmark", link: "/", icon: FaBookmark },
+    // { name: "Subscription", link: "/Subscription", icon: GiWallet },
+    { name: "Terms & Conditions", link: "/TermsAndConditionUser", icon: BsQuestionCircleFill },
+    // { name: "About", link: "/", icon: BsInfoCircle },
     ];
 
     const logout = async () => {
@@ -36,9 +36,7 @@ const Navbar = () => {
             }
         } catch (err) {
             console.log(err);
-
         }
-
     }
 
     const [open, setOpen] = useState(true);

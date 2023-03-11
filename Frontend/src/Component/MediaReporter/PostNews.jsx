@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
     ImEye,
@@ -6,29 +7,56 @@ import {
     ImFilesEmpty,
     ImSpinner3,
 } from "react-icons/im";
-import Navbar from "../User/Navbar";
+import { Navigate, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 // import { uploadImage } from "../api/post";
 // import { useNotification } from "../context/NotificationProvider";
 // import MarkdownHint from "./MarkdownHint";
 // import DeviceView from "./DeviceView";
 
+
+
 export const defaultPost = {
     title: "",
-    thumbnail: "",
-    featured: false,
-    content: "",
-    tags: "",
-    meta: "",
+    image: "",
+    description: "",
+    catagory: "",
 };
 
-export default function PostNews({
-    onSubmit,
-    initialPost,
-    postBtnTitle,
-    busy,
-    resetAfterSubmit,
-}) {
-    //   const [postInfo, setPostInfo] = useState(defaultPost);
+const PostNews = () => {
+    const [postInfo, setPostInfo] = useState({ defaultPost });
+    const [image, setImage] = useState("");
+    const baseUrl = "https://api.cloudinary.com/v1_1/dhq2fxiej/image/upload/";
+    const preset = "newsApp";
+
+    const imageupload = async (e) => {
+        const data = new FormData();
+        data.append("file", image);
+        data.append("upload_preset", preset);
+        data.append("cloud_name", "dhq2fxiej");
+        try {
+            // setLoading(true);
+            await axios.post(baseUrl, data)
+                .then(res => {
+                    // setUrl(res.data.secure_url)
+                    setPostInfo({ ...postInfo, image: res.data.secure_url })
+                });
+        } catch (err) {
+            //   toast.error("image not uploaded");
+            console.error(err);
+            return;
+        }
+    }
+
+    useEffect(() => {
+        if (postInfo.image) {
+            postANews();
+        }
+    }, [postInfo.image]);
+    // useEffect(()=>{
+    //     console.log(postInfo);
+    //     postANews();
+    // },[postInfo.image])
     //   const [selectedThumbnailURL, setSelectedThumbnailURL] = useState("");
     //   const [imageUrlToCopy, setImageUrlToCopy] = useState("");
     //   const [imageUploading, setImageUploading] = useState(false);
@@ -49,17 +77,27 @@ export default function PostNews({
     //     };
     //   }, [initialPost, resetAfterSubmit]);
 
-    //   const handleChange = ({ target }) => {
-    //     const { name, value, checked } = target;
-    //     if (name === "thumbnail") {
-    //       const file = target.files[0];
-
-    //       if (!file.type?.includes("image")) {
-    //         return alert("This is not an image!");
-    //       }
-    //       setPostInfo({ ...postInfo, thumbnail: file });
-    //       return setSelectedThumbnailURL(URL.createObjectURL(file));
+    // const handleChange = ({ target }) => {
+    //     const { name } = target;
+    //     if (name === "newsImg") {
+    //         const file = target.files[0];
+    //         if (!file.type?.includes("image")) {
+    //             return alert("This is not an image!");
+    //         }
+    //         console.log("Raj file " + file);
+    //         // setPostInfo({ ...postInfo, image: file });
+    //         console.log(postInfo);
     //     }
+    // }
+
+    let name, value;
+    const handleInput = (e) => {
+        name = e.target.name;
+        value = e.target.value;
+        // console.log(e.target.value)
+        setPostInfo({ ...postInfo, [name]: value });
+        // console.log(postInfo);
+    }
 
     //     if (name === "featured") {
     //       //   localStorage.setItem({ ...postInfo, featured: checked });
@@ -140,41 +178,78 @@ export default function PostNews({
     //     setPostInfo({ ...defaultPost });
     //     localStorage.removeItem("blogPost");
     //   };
+    const navigate = useNavigate()
+    const postANews = async () => {
+        console.log("hello");
+        console.log(postInfo);
+        try {
+            const res = await axios.post('/uploadNews', postInfo);
+            console.log(res.data);
+            if (res.data.success === false) {
+                navigate('/')
+            }
+            resetForm();
+        } catch (err) {
+            console.log(err);
+            navigate('/')
+        }
+    }
+
+    const resetForm = () => {
+        setPostInfo(defaultPost);
+    }
+
+    // const getMediaReporter = async () => {
+    //     try {
+    //         const res = await axios.post('/createPost');
+    //         console.log(res.data);
+    //         if (res.data.success === false) {
+    //             navigate('/')
+    //         }
+    //     } catch (err) {
+    //         console.log(err);
+    //         navigate('/')
+    //     }
+    // }
+
 
     return (
         <>
-        <Navbar />
-            <form className="p-2 flex justify-center">
+            <Navbar />
+            <div className="p-2 flex justify-center">
                 <div className="w-9/12 h-screen space-y-3  flex  flex-col">
                     <div className="flex items-center justify-between max-md:flex-col">
                         <h1 className="text-xl font-semibold text-blue-700 max-md:m-2">
                             Create News
                         </h1>
                         <div className="flex items-center space-x-5 ">
+                            {/* <button className="cursor-pointer">hello</button> */}
                             <button
-                                type="button"
-                                // onClick={resetForm}
-                                className="flex items-center space-x-2 px-3 ring-1 ring-blue-500 h-10 rounded text-blue-500 hover:text-white hover:bg-blue-500 transition"
-                            >
+                                onClick={resetForm}
+                                className="z-10 cursor-pointer flex items-center space-x-2 px-3 ring-1 ring-blue-500 h-10 rounded text-blue-500 hover:text-white hover:bg-blue-500 transition">
                                 <ImSpinner11 />
                                 <span>Reset</span>
                             </button>
-                            <button className=" ring-1 ring-blue-500 w-36 h-10 rounded text-white hover:text-blue-500 hover:bg-white bg-blue-500 hover:bg-white-500 hover:bg-transparent ">
-                                {/* <ImSpinner3 className="animate-spin mx-auto text-xl" /> */}
+                            <button
+                                onClick={imageupload}
+                                className="z-10 cursor-pointer ring-blue-500 w-36 h-10 rounded text-white hover:text-blue-500 hover:bg-white bg-blue-500"
+                            >
                                 POST
                             </button>
                         </div>
                     </div>
 
                     {/* News Image */}
-                    <div className="mb-3">
+                    <div className="mb-3 ">
                         <h1 className="text-xl font-semibold mb-2 text-white">
                             News Image
                         </h1>
                         <div className="">
                             <input
-                                //   onChange={handleChange}
-                                name="thumbnail"
+                                onChange={(e) => {
+                                    setImage(e.target.files[0])
+                                }}
+                                name="newsImg"
                                 id="thumbnail"
                                 type="file"
                                 hidden
@@ -195,9 +270,9 @@ export default function PostNews({
                         <input
                             type="text"
                             // onFocus={() => setDisplayMarkdownHint(false)}
-                            // value={title}
+                            value={postInfo.title}
                             name="title"
-                            // onChange={handleChange}
+                            onChange={handleInput}
                             className="text-xl outline-none focus:ring-1 rounded p-2 w-full font-semibold my-2"
                             placeholder="News title"
                         />
@@ -210,9 +285,9 @@ export default function PostNews({
                         </label>
                         <textarea
                             // onFocus={() => setDisplayMarkdownHint(true)}
-                            // value={content}
-                            name="content"
-                            // onChange={handleChange}
+                            value={postInfo.description}
+                            name="description"
+                            onChange={handleInput}
                             // className="resize-none outline-none focus:ring-1 flex-1 h-full rounded p-2 w-full font-semibold font-mono tracking-wide text-lg "
                             className="resize-none text-xl outline-none focus:ring-1 rounded p-2 pb-12 w-full font-semibold my-2"
                             placeholder="Description"
@@ -225,11 +300,11 @@ export default function PostNews({
                             Category
                         </label>
                         <input
-                            //   value={tags}
-                            name="tags"
-                            id="tags"
+                            value={postInfo.catagory}
+                            name="catagory"
+                            id="catagory"
                             type="text"
-                            //   onChange={handleChange}
+                            onChange={handleInput}
                             className=" text-xl outline-none focus:ring-1 rounded p-2 w-full font-semibold my-2"
                             placeholder="Category"
                         />
@@ -237,7 +312,7 @@ export default function PostNews({
                 </div>
 
 
-            </form>
+            </div>
 
             {/* <DeviceView
         title={title}
@@ -249,3 +324,4 @@ export default function PostNews({
         </>
     );
 }
+export default PostNews;
