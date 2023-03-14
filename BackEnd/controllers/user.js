@@ -26,7 +26,7 @@ exports.userSignIn = async (req, res) => {
     // const userEmail=await User.findOne({email});
     if (!user) return res.json({ success: false, message: 'username / password does not match' });
 
-    const isMatch =await user.comparePassword(password);
+    const isMatch = await user.comparePassword(password);
     if (!isMatch) return res.json({ success: false, message: 'username / password does not match' });
 
     // const token=jwt.sign({userId:user._id},process.env.JWT_SECRET,{expiresIn:'1d'})
@@ -34,17 +34,30 @@ exports.userSignIn = async (req, res) => {
     //     user.token=token;
     //    await user.save();
     const token = await user.generateAuthToken();
-    if(token){
-        res.cookie('jwtoken',token,{
-            expires:new Date(Date.now()+2589200000),
-            httpOnly:true
+    if (token) {
+        res.cookie('jwtoken', token, {
+            expires: new Date(Date.now() + 2589200000),
+            httpOnly: true
         })
-        return res.status(200).json({ success: true, user, token ,type:"User"});
-    }else{
-        return res.status(422).json({ success: false,message: 'somthing went wrong'});
+        return res.status(200).json({ success: true, user, token, type: "User" });
+    } else {
+        return res.status(422).json({ success: false, message: 'somthing went wrong' });
     }
     // console.log(token);
     // await user.save();
     // console.log(user);
-    
+
+}
+
+exports.getProfile = async (req, res) => {
+    console.log(req.rootUser);
+    res.json({ data: req.rootUser, success: true, message: 'User find' })
+}
+
+exports.editProfile = async (req, res) => {
+    console.log(req.body);
+    const id = req.userId;
+    const data = await User.findByIdAndUpdate(id, { $set: req.body })
+    // console.log(data);
+    res.status(200).json({ data: data, success: true, message: 'Profile details updated' })
 }

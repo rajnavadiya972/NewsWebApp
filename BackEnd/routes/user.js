@@ -2,12 +2,12 @@ const express = require('express')
 const UserIsAuth = require('../middlewares/UserIsAuth')
 const MediaReporterIsAuth = require('../middlewares/MediaReporterIsAuth')
 const router = express.Router();
-const { createUser, userSignIn } = require('./../controllers/user')
-const { upload,createNews,allNews,myNews } = require('./../controllers/createNews')
+const { createUser, userSignIn,editProfile,getProfile } = require('./../controllers/user')
+const { upload,createNews,allNews,myNews} = require('./../controllers/createNews')
 const CreateNews = require('../models/CreateNews')
 const { validateCreateNews } = require('../middlewares/validation/mediaReporter')
 
-const { createMediaReporter, mediaReporterSignIn } = require('../controllers/mediaReporter')
+const { createMediaReporter, mediaReporterSignIn,mediaEditProfile,mediaGetProfile } = require('../controllers/mediaReporter')
 
 const { validateUserSignUp, userValidation, validateUserSignIn } = require('../middlewares/validation/user');
 
@@ -39,5 +39,13 @@ router.post('/uploadNews', MediaReporterIsAuth.isAuth,createNews)
 router.get('/AllNews',isAuth,allNews)
 
 router.get('/MyNews', MediaReporterIsAuth.isAuth,myNews)
+
+router.get('/getUserProfile',UserIsAuth.isAuth,getProfile)
+router.put('/EditUserProfile', UserIsAuth.isAuth,editProfile)
+router.put('/EditUserProfilePhoto', UserIsAuth.isAuth,editProfile)
+
+router.get('/getMediaProfile',MediaReporterIsAuth.isAuth,mediaGetProfile)
+router.put('/EditMediaProfile', MediaReporterIsAuth.isAuth,mediaEditProfile)
+router.put('/EditMediaProfilePhoto', MediaReporterIsAuth.isAuth,mediaEditProfile)
 
 module.exports = router;

@@ -29,14 +29,27 @@ exports.mediaReporterSignIn = async (req, res) => {
     if (!isMatch) return res.json({ success: false, message: 'username / password does not match' });
 
     const token = await reporter.generateAuthToken();
-    if(token){
-        res.cookie('jwtoken',token,{
-            expires:new Date(Date.now()+2589200000),
-            httpOnly:true
+    if (token) {
+        res.cookie('jwtoken', token, {
+            expires: new Date(Date.now() + 2589200000),
+            httpOnly: true
         })
-        return res.status(200).json({ success: true, reporter, token ,type:"MediaReporter"});
-    }else{
-        return res.status(422).json({ success: false,message: 'somthing went wrong'});
+        return res.status(200).json({ success: true, reporter, token, type: "MediaReporter" });
+    } else {
+        return res.status(422).json({ success: false, message: 'somthing went wrong' });
     }
-    
+
+}
+
+exports.mediaGetProfile = async (req, res) => {
+    console.log(req.rootMediaReporte);
+    res.json({ data: req.rootMediaReporte, success: true, message: 'User find' })
+}
+
+exports.mediaEditProfile = async (req, res) => {
+    console.log(req.body);
+    const id = req.mediaReporterId;
+    const data = await MediaReporter.findByIdAndUpdate(id, { $set: req.body })
+    // console.log(data);
+    res.status(200).json({ data: data, success: true, message: 'Profile details updated' })
 }

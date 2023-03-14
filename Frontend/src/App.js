@@ -14,6 +14,11 @@ import AllNewsMedia from './Component/MediaReporter/AllNews';
 import AllNewsUser from './Component/User/AllNews';
 import MyPost from './Component/MediaReporter/MyPost';
 
+import UserProfile from './Component/User/UserProfile';
+import UserProfileEdit from './Component/User/UserProfileEdit';
+
+import MediaProfile from './Component/MediaReporter/MediaProfile';
+import MediaProfileEdit from './Component/MediaReporter/MediaProfileEdit';
 import Subscription from './Component/MediaReporter/Subscription';
 
 
@@ -36,6 +41,10 @@ function App() {
         <Route path='/LocalNewsMedia' element={<AllNewsMedia />} />
         <Route path='/MyPost' element={<MyPost />} />
         <Route path='/Subscription' element={<Subscription />} />
+        <Route path='/UserProfile' element={<UserProfile />} />
+        <Route path='/UserProfileEdit' element={<UserProfileEdit />} />
+        <Route path='/MediaProfile' element={<MediaProfile />} />
+        <Route path='/MediaProfileEdit' element={<MediaProfileEdit />} />
       </Routes>
     </BrowserRouter>
   );

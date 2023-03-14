@@ -23,12 +23,28 @@ const userSchema = new mongoose.Schema({
     token: {
         type: String,
         // required: true
-    }
-    ,
-
-    avtar: {
-        type: Buffer
-    }
+    },
+    firstname: {
+        type: String,
+    },
+    lastname: {
+        type: String,
+    },
+    city: {
+        type: String,
+    },
+    state: {
+        type: String,
+    },
+    country: {
+        type: String,
+    },
+    phone: {
+        type: String,
+    },
+    url: {
+        type: String,
+    },
 })
 
 userSchema.pre('save', function (next) {

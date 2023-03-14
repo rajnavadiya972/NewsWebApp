@@ -16,7 +16,7 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const menus = [{ name: "Profile", link: "/", icon: FaUserCircle },
+    const menus = [{ name: "Profile", link: "/UserProfile", icon: FaUserCircle },
     { name: "World News", link: "/ApiNewsUser", icon: GiWorld },
     { name: "Latest News", link: "/LocalNewsUser", icon: RiArticleLine },
     // { name: "My Post", link: "/MyPost", icon: BsFilePost },
