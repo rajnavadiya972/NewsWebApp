@@ -18,11 +18,11 @@ function News() {
             const res = await axios.get('/ApiNewsHome');
             console.log(res.data);
             if(res.data.success===false){
-                navigate('/')
+                navigate('/MediaReporterLogin')
             }
         }catch(err){
             console.log(err);
-            navigate('/')
+            navigate('/MediaReporterLogin')
         }
     }
     useEffect(() => {

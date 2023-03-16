@@ -43,7 +43,6 @@ const SignUp = () => {
         username: "", email: "", password: "", confirmPassword: ""
     });
 
-    const [verifyOtp, setVerifyOtp] = useState(false);
     // let name, value;
     // const handleInput = (e) => {
     //     name = e.target.name;
@@ -136,27 +135,27 @@ const SignUp = () => {
                                             <div className="mt-3 md:flex md:items-center md:-mx-2">
                                                 <NavLink to='/UserSignUp' >
 
-                                                <button class={activebtn}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                                    </svg>
+                                                    <button class={activebtn}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                        </svg>
 
-                                                    <span className="mx-2 text-white">
-                                                        User
-                                                    </span>
-                                                </button>
+                                                        <span className="mx-2 text-white">
+                                                            User
+                                                        </span>
+                                                    </button>
                                                 </NavLink>
 
                                                 <NavLink to='/MediaReporterSignUp'>
-                                                <button class={deactivebtn}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                                    </svg>
+                                                    <button class={deactivebtn}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                        </svg>
 
-                                                    <span className="mx-2 text-white">
-                                                        Midea Reporter
-                                                    </span>
-                                                </button>
+                                                        <span className="mx-2 text-white">
+                                                            Midea Reporter
+                                                        </span>
+                                                    </button>
                                                 </NavLink>
                                             </div>
                                         </div>
@@ -199,73 +198,54 @@ const SignUp = () => {
                                                                         (<p className='text-red-500'>{errors.email}</p>) : null
                                                                 }
                                                             </div>
-
                                                             <div>
-                                                                <label className="block mt-3 text-sm text-gray-200">OTP</label>
-                                                                <div className='flex flex-row'>
-                                                                    <input type="text" placeholder="Enter OTP" name="OTP"
-                                                                        value={userdata.OTP}
-                                                                        className="block w-full px-5 py-3 mt-2 border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                                                                    <button
-                                                                        onClick={(e) => { e.preventDefault(); setVerifyOtp(true); }}
-                                                                        className="flex items-center justify-between w-1/2 px-5 py-3 mt-2 mx-5 rounded-lg text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                                                        <span >Get OTP</span>
-                                                                    </button>
+                                                                <label className="block mt-3 text-sm text-gray-200">Password</label>
+                                                                <div className="flex flex-row">
+                                                                    <input type={passwordType} placeholder="Enter your password" name='password'
+                                                                        value={password}
+                                                                        onChange={handleChange('password')}
+                                                                        onBlur={handleBlur('password')}
+                                                                        className="block w-full px-5 py-3 mt-2  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                                    <div className='cursor-pointer my-auto mx-2' onClick={togglePassword}>
+                                                                        {passwordType === "password" ? <AiFillEye className=' text-gray-300' size={25} /> : <AiFillEyeInvisible size={25} className='text-gray-300' />}
+                                                                    </div>
+                                                                </div>
+                                                                {
+                                                                    errors.password && touched.password ?
+                                                                        (<p className='text-red-500'>{errors.password}</p>) : null
+                                                                }
+                                                            </div>
+                                                            <div>
+
+                                                                <div>
+                                                                    <label className="block mt-3 text-sm  text-gray-200">Confirm password</label>
+                                                                    <div className="flex flex-row">
+                                                                        <input type={passwordConfirmType} placeholder="Enter your password" name='confirmPassword'
+                                                                            value={confirmPassword}
+                                                                            onChange={handleChange('confirmPassword')}
+                                                                            onBlur={handleBlur('confirmPassword')}
+                                                                            className="block w-full px-5 py-3 mt-2 border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                                                        <div className='cursor-pointer my-auto mx-2' onClick={toggleConfirmPassword}>
+                                                                            {passwordConfirmType === "password" ? <AiFillEye className='text-gray-300' size={25} /> : <AiFillEyeInvisible size={25} className='text-gray-300' />}
+                                                                        </div>
+                                                                    </div>
+                                                                    {
+                                                                        errors.confirmPassword && touched.confirmPassword ?
+                                                                            (<p className='text-red-500'>{errors.confirmPassword}</p>) : null
+                                                                    }
                                                                 </div>
                                                             </div>
-                                                            {
-                                                                (verifyOtp) ?
-                                                                    <>
-                                                                        <div>
-                                                                            <label className="block mt-3 text-sm text-gray-200">Password</label>
-                                                                            <div className="flex flex-row">
-                                                                                <input type={passwordType} placeholder="Enter your password" name='password'
-                                                                                    value={password}
-                                                                                    onChange={handleChange('password')}
-                                                                                    onBlur={handleBlur('password')}
-                                                                                    className="block w-full px-5 py-3 mt-2  border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                                                                                <div className='cursor-pointer my-auto mx-2' onClick={togglePassword}>
-                                                                                    {passwordType === "password" ? <AiFillEye className=' text-gray-500' size={25} /> : <AiFillEyeInvisible size={25} className='text-gray-500' />}
-                                                                                </div>
-                                                                            </div>
-                                                                            {
-                                                                                errors.password && touched.password ?
-                                                                                    (<p className='text-red-500'>{errors.password}</p>) : null
-                                                                            }
-                                                                        </div>
-                                                                        <div>
+                                                            <button
+                                                                onClick={(errors) ? handleSubmit : null}
+                                                                className="flex mt-5 items-center justify-between w-1/2 px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                                                <span >Sign Up</span>
 
-                                                                            <div>
-                                                                                <label className="block mt-3 text-sm  text-gray-200">Confirm password</label>
-                                                                                <div className="flex flex-row">
-                                                                                    <input type={passwordConfirmType} placeholder="Enter your password" name='confirmPassword'
-                                                                                        value={confirmPassword}
-                                                                                        onChange={handleChange('confirmPassword')}
-                                                                                        onBlur={handleBlur('confirmPassword')}
-                                                                                        className="block w-full px-5 py-3 mt-2 border rounded-md placeholder-gray-600 bg-gray-900 text-gray-300 border-gray-700 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                                                                                    <div className='cursor-pointer my-auto mx-2' onClick={toggleConfirmPassword}>
-                                                                                        {passwordConfirmType === "password" ? <AiFillEye className='text-gray-500' size={25} /> : <AiFillEyeInvisible size={25} className='text-gray-500' />}
-                                                                                    </div>
-                                                                                </div>
-                                                                                {
-                                                                                    errors.confirmPassword && touched.confirmPassword ?
-                                                                                        (<p className='text-red-500'>{errors.confirmPassword}</p>) : null
-                                                                                }
-                                                                            </div>
-                                                                        </div>
-                                                                        <button
-                                                                            onClick={(errors) ? handleSubmit : null}
-                                                                            className="flex mt-5 items-center justify-between w-1/2 px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                                                            <span >Sign Up</span>
-
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-                                                                                <path fill-rule="evenodd"
-                                                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                                                    clip-rule="evenodd" />
-                                                                            </svg>
-                                                                        </button>
-                                                                    </> : <></>
-                                                            }
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                                        clip-rule="evenodd" />
+                                                                </svg>
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </>

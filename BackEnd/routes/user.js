@@ -1,13 +1,15 @@
 const express = require('express')
 const UserIsAuth = require('../middlewares/UserIsAuth')
+const {isResetTokenValid} = require('../middlewares/UserIsAuth')
 const MediaReporterIsAuth = require('../middlewares/MediaReporterIsAuth')
+const {isResetTokenValidMedia}= require('../middlewares/MediaReporterIsAuth')
 const router = express.Router();
-const { createUser, userSignIn,editProfile,getProfile } = require('./../controllers/user')
+const { createUser, userSignIn,editProfile,getProfile,forgotPassword,resetPassword } = require('./../controllers/user')
 const { upload,createNews,allNews,myNews} = require('./../controllers/createNews')
 const CreateNews = require('../models/CreateNews')
 const { validateCreateNews } = require('../middlewares/validation/mediaReporter')
 
-const { createMediaReporter, mediaReporterSignIn,mediaEditProfile,mediaGetProfile } = require('../controllers/mediaReporter')
+const { createMediaReporter, mediaReporterSignIn,mediaEditProfile,mediaGetProfile,forgotPasswordMedia,resetPasswordMedia } = require('../controllers/mediaReporter')
 
 const { validateUserSignUp, userValidation, validateUserSignIn } = require('../middlewares/validation/user');
 
@@ -47,5 +49,18 @@ router.put('/EditUserProfilePhoto', UserIsAuth.isAuth,editProfile)
 router.get('/getMediaProfile',MediaReporterIsAuth.isAuth,mediaGetProfile)
 router.put('/EditMediaProfile', MediaReporterIsAuth.isAuth,mediaEditProfile)
 router.put('/EditMediaProfilePhoto', MediaReporterIsAuth.isAuth,mediaEditProfile)
+
+
+router.post("/forgotPassword", forgotPassword);
+router.post("/reset-password", isResetTokenValid, resetPassword);
+router.post("/verify-token", isResetTokenValid, (req, res) => {
+  res.send({success: true, message: "Valid Token"});
+});
+
+router.post("/forgotPasswordMedia", forgotPasswordMedia);
+router.post("/reset-password-media", isResetTokenValidMedia, resetPasswordMedia);
+router.post("/verify-token-Media", isResetTokenValidMedia, (req, res) => {
+  res.send({success: true, message: "Valid Token"});
+});
 
 module.exports = router;

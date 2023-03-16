@@ -21,7 +21,7 @@ const Navbar = () => {
     { name: "Latest News", link: "/LocalNewsMedia", icon: RiArticleLine },
     { name: "My Post", link: "/MyPost", icon: BsFilePost },
     { name: "Boost Your Post", link: "/PostNews", icon: IoIosRocket },
-    { name: "Bookmark", link: "/PostNews", icon: FaBookmark },
+    // { name: "Bookmark", link: "/PostNews", icon: FaBookmark },
     { name: "Subscription", link: "/Subscription", icon: GiWallet },
     { name: "Terms & Conditions", link: "/TermsAndConditionMedia", icon: BsQuestionCircleFill },
     // { name: "About", link: "/", icon: BsInfoCircle },

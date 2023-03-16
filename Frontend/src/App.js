@@ -21,6 +21,12 @@ import MediaProfile from './Component/MediaReporter/MediaProfile';
 import MediaProfileEdit from './Component/MediaReporter/MediaProfileEdit';
 import Subscription from './Component/MediaReporter/Subscription';
 
+import ForgotPass from './Component/User/ForgotPass'
+import ResetPassForm from './Component/User/ResetPassForm';
+
+import ForgotPassMedia from './Component/MediaReporter/ForgotPass'
+import ResetPassFormMedia from './Component/MediaReporter/ResetPassForm';
+
 
 
 function App() {
@@ -45,6 +51,10 @@ function App() {
         <Route path='/UserProfileEdit' element={<UserProfileEdit />} />
         <Route path='/MediaProfile' element={<MediaProfile />} />
         <Route path='/MediaProfileEdit' element={<MediaProfileEdit />} />
+        <Route path='/ForgotPass' element={<ForgotPass />} />
+        <Route path='/reset-password' element={<ResetPassForm />} />
+        <Route path='/ForgotPassMedia' element={<ForgotPassMedia />} />
+        <Route path='/reset-password-media' element={<ResetPassFormMedia />} />
       </Routes>
     </BrowserRouter>
   );

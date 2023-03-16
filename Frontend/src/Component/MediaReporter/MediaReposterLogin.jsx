@@ -203,7 +203,7 @@ const Login = () => {
                                                             <div class="mt-6">
                                                                 <div class="flex justify-between">
                                                                     <label for="password" class="text-sm text-gray-200">Password</label>
-                                                                    <a href="#" class="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline">Forgot password?</a>
+                                                                    <a href="/ForgotPassMedia" class="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline">Forgot password?</a>
                                                                 </div>
 
                                                                 <div className='flex flex-row'>
