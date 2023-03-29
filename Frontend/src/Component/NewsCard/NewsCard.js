@@ -24,7 +24,8 @@ const NewsCard = ({ article: { description, publishedAt, source, title, url, url
     return (
         <Card ref={elRefs[i]} className={activeArticle === i ? classes.activeCard : classes.card}>
             <CardActionArea href={url} target='_blank'>
-                <CardMedia className='h-62' image={urlToImage || newsImg} />
+                {/* <CardMedia className='h-62' image={urlToImage || newsImg} /> */}
+                <img src={urlToImage || newsImg} className="h-60 z-0" />
                 <div>
                     <Typography variant='body2' component={'h2'}>{(new Date(publishedAt)).toDateString}</Typography>
                     <Typography variant='body2' component={'h2'}>{source.name}</Typography>

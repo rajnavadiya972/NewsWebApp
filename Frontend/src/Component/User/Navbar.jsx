@@ -42,7 +42,7 @@ const Navbar = () => {
     const [open, setOpen] = useState(true);
 
     return (
-        <>
+        <div className="z-20">
             <div className="flex fixed w-screen h-14">
                 <div className=" py-3 bg-[#b7b8bb8f] w-14 justify-center rounded-xl hidden max-md:block text-gray-100 hover:text-blue-500">
                     <HiMenuAlt1
@@ -84,7 +84,7 @@ const Navbar = () => {
                     <BiLogOut size={25} className="my-6 mx-auto cursor-pointer hover:text-blue-500" onClick={logout}/>
                 </div>
             </section>
-        </>
+        </div>
     );
 };
 

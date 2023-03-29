@@ -125,7 +125,7 @@ const Login = () => {
 
                             <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40 max-md:px-0">
                                 <div className='max-md:hidden'>
-                                    <h2 class="text-4xl font-bold text-white">Influencer</h2>
+                                    <h2 class="text-4xl font-bold text-white">Media Reporter</h2>
 
                                     <p class="max-w-xl mt-3 text-gray-300">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In autem ipsa, nulla laboriosam dolores, repellendus perferendis libero suscipit nam temporibus molestiae</p>
                                 </div>
